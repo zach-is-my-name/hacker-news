@@ -11,8 +11,19 @@ const {app, runServer, closeServer} = require('../server');
 
 chai.use(chaiHttp);
 
-function seedData() {
+
+
+generateNewspostData() {
+  return {
+    title: faker.lorem.word(),
+    url: faker.internet.url()
+  }
+
+};
+
+seedNewspostData() {
     console.info('Seeding data');
+    
 }
 
 function tearDownDb() {
