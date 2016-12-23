@@ -15,6 +15,15 @@ app.use(bodyParser.json());
 
 const {NewsPost} = require('./models');
 
+
+
+
+
+
+
+
+
+
 //API Endpoints Below
 
 app.post('/stories', (req, res) => {
@@ -38,6 +47,49 @@ requiredFields.forEach(field => {
     });
 
 });
+
+
+app.get('/stories', (req, res)   => {
+  NewsPost
+    .find()
+    .sort({votes:-1})
+    .limit(20)
+    .exec()
+    .then (newsposts => {
+      res.status(200).json({
+        newsposts:newsposts.map(
+          (newsposts)=> newsposts.apiRepr())
+        });
+      })
+      .catch(
+        err => {
+          console.error(err);
+          res.status(500).json({message:'Internal server error'});
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Server Connections Below
 
