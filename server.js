@@ -17,6 +17,27 @@ const {NewsPost} = require('./models');
 
 //API Endpoints Below
 
+app.post('/stories', (req, res) => {
+const requiredFields = ['title', 'url'];
+requiredFields.forEach(field => {
+        if (!field in req.body) {
+        res.status(400).json({
+            error: `Missing '$(field)' in request body`});
+
+}});
+
+  NewsPost
+    .create({
+      title: req.body.title,
+      url: req.body.url
+    })
+   .then(storyPost => res.status(201).json(storyPost.apiRepr()))
+   .catch(err => {
+       console.error(err);
+       res.status(500).json({error: 'Something went wrong'});
+    });
+
+});
 
 // Server Connections Below
 

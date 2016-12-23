@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const newsPostSchema = mongoose.Schema ({
   title: {type: String, required : true},
   url: {type: String, required: true},
-  votes: {type: Number, required: true}
+  votes: {type: Number, defualt: 0}
 });
 
 
