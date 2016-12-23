@@ -13,7 +13,12 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(bodyParser.json());
 
-// API endpoints go here
+const {NewsPost} = require('./models');
+
+//API Endpoints Below
+
+
+// Server Connections Below
 
 let server;
 function runServer() {
